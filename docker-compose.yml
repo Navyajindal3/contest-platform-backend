@@ -1,0 +1,25 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: pulserank_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: pulserank
+      POSTGRES_PASSWORD: pulserank
+      POSTGRES_DB: pulserank
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7
+    container_name: pulserank_redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+
+volumes:
+  pgdata:
